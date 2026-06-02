@@ -86,8 +86,66 @@ def even_numbers(list):
             phlist.append(num)
     return phlist
 
-
 print(even_numbers(nr))
+
+list_1 = ["ERR-Value Error-ER:10" , "INF-Program launch Info-CD:5" , "WRN-Low memory-WR:11"]
+
+print("tema procesare stringuri")
+
+def format_logs(list):
+    for elem1 in list:
+        lista = elem1.split("-")                                                                    # split la lista dupa '-' ca sa avem datele importante (codul de eroare si mesajul
+        listb = elem1.split(":")                                                                    # split la lista dupa ':' pentru a avea ultimul numar
+        print()
+        if lista[0] == "ERR":                                                                       # conditie pentru "ERR"
+            print(f"[ERROR] \nMesaj : {lista[1]} \nCod: {listb[1]}" )
+        elif lista[0] == "INF":                                                                       # conditie pentru "INF"
+            print(f"[INFO] \nMesaj : {lista[1]} \nCod: {listb[1]}")
+        elif lista[0] == "WRN":                                                                       # conditie pentru "WRN"
+            print(f"[WARNING] \nMesaj : {lista[1]} \nCod: {listb[1]}")
+        else:
+            print(f"Invalid Format: \nNo 'ERR', 'INF' or 'WRN' found.")
+
+format_logs(list_1)
+
+
+
+# refactorizare
+# schimbare de pe "print" pe "return"
+
+
+# def format_logs(place_holder):
+#     for elem1 in place_holder:
+#         lista = elem1.split("-")
+#         listb = elem1.split(":")
+#         chunks = []
+#         print()
+#         if lista[0] == "ERR":
+#             chunks.append("[ERROR] \nMesaj : {lista[1]} \nCod: {listb[1]} \n")
+#         elif lista[0] == "INF":
+#             chunks.append("[INFO] \nMesaj : {lista[1]} \nCod: {listb[1]} \n")
+#         elif lista[0] == "WRN":
+#             chunks.append("[WARNING] \nMesaj : {lista[1]} \nCod: {listb[1]} \n")
+#         else:
+#             return("Invalid Format: \nNo 'ERR', 'INF' or 'WRN' found.")
+#     strings = "\n".join(chunks)
+#     return strings
+# print(format_logs(list_1))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
