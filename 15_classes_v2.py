@@ -36,12 +36,13 @@ class Task:
         self.date = date
         self.owner = owner
         self.category = category
+        self.completed = False
 
     def __str__(self):
-        return f"{self.title}, {self.date}, {self.owner}, {self.category}"
+        return f"{self.title}, {self.date}, {self.owner}, {self.category}, completed = {self.completed}"
 
     def __repr__(self):
-        return f"Task(\"{self.title}\", \"{self.date}\", \"{self.owner}\", {self.category})"
+        return f"Task(\"{self.title}\", \"{self.date}\", \"{self.owner}\", {self.category}, completed={self.completed})"
 
 
 task1 = Task("Homework", "23.June", "John", Categories.COURSE)
@@ -59,6 +60,11 @@ class Todos:
     def __init__(self):
         self.todos_list = []
 
+    # property
+    @property
+    def task_count(self):
+        return len(self.todos_list)
+
     def add_task(self, task):
         x = 1
         for elem in self.todos_list:
@@ -73,6 +79,9 @@ class Todos:
         for elem in self.todos_list:
             if elem.title == task.title:
                 self.todos_list.remove(task)
+
+    def mark_as_completed(self, task: Task):
+        task.completed = True
 
     def filter_by_category(self, category):
         results = []
@@ -107,6 +116,13 @@ class Todos:
                     print(elem)
             print("\n")
 
+    def filter_completed_tasks(self, is_completed: bool):
+        results = []
+        for elem in self.todos_list:
+            if elem.completed == is_completed:
+                results.append(elem)
+        return results
+
 
 todos1 = Todos()
 todos1.add_task(task1)
@@ -117,6 +133,12 @@ todos1.add_task(Task("Go to second-hand store", "25.July", "Ellie", Categories.S
 todos1.add_task(Task("Get Books", "25.July", "John", Categories.SHOPPING))
 todos1.add_task(Task("Cut Grass", "23.June", "Cena", Categories.WORK))
 todos1.add_task(Task("Christmas prep even tho it's summer ", "25.July", "Douglas", Categories.PRESENTS))
+
+
+
+print(task1)
+todos1.mark_as_completed(task1)
+print(task1)
 
 print(todos1)
 
@@ -149,7 +171,6 @@ print(f"Number of tasks with the category: {test} is {todos1.number_of_categorie
 print("\n")
 # creaza o metoda care printeaza task-urile, organizate dupa categorie. de exemplu, acea metoda ar printa:
 
-# """
 # Tasks by category:
 # Category.COURSE:
 # Rezolvare Tema, 23.Iunie, John, Categories.COURSE
@@ -158,8 +179,19 @@ print("\n")
 # Category.SHOPPING:
 # Go to second-hand store, 23.Iunie, John, Category.SHOPPING
 # Buy shoes, 23.Iunie, John, Category.SHOPPING
-# """
 
 todos1.display_categories()
 
 print("\n")
+
+
+pprint(todos1.filter_completed_tasks(True))
+
+print("===========TASK COUNT========")
+
+todos1.add_task(Task("Write to Paul", "Today", "Ellie", Categories.PRESENTS))
+
+print(len(todos1.todos_list))
+print(todos1.task_count)
+
+
