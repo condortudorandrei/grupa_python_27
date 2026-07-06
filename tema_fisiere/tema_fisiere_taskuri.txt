@@ -1,0 +1,6 @@
+buy shoes, 2026-07-11, Ellie, shopping
+dnd session, 2026-07-25, Andrew, dnd
+gaming with Grim, 2026-07-09, Ellie, gaming
+cleaning house, 2026-06-28, Andrew, work
+do taxes, 2026-08-20, Brad, work
+attend ZZZ concert, 2027-05-20, Andrew, entertainment
